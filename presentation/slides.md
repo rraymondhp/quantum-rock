@@ -10,9 +10,12 @@ header-includes:
  - \usepackage{physics}
 ...
 
-# Our $U_\omega: \ket{x} \ket{y} \to \ket{x} \ket{y \oplus f(x)}$
+# Element Search in Database 
 
-## For element search: $f(x) := x = k$
+
+## Our $U_\omega: \ket{x} \ket{y} \to \ket{x} \ket{y \oplus f(x)}$
+
+### For element search: $f(x) := x = k$
 
 Let $X_{\bar k} = \bigotimes_{i=1}^{n} \begin{cases}
 \mathbf{X} & \text{if $k$ has bit $i$ \emph{un}set}\\
@@ -24,14 +27,7 @@ Then $U_\omega = (X_{\bar k}) (U_\wedge) (X_{\bar k})$
 
 ![](u_omega_eq_5.pdf){height=4cm}
 
-# Our $U_\omega: \ket{x} \ket{y} \to \ket{x} \ket{y \oplus f(x)}$
-
-## For minimum search: $f(x) := x < k$
-
-This is already implemented in Qiskit aqua with `qiskit.aqua.circuits.FixedValueComparator`
-
-
-# Modified diffusion operator $U_s$
+## Modified diffusion operator $U_s$
 
 In the standard Grover search, we mirror around the (fixed) starting state $\ket{s}
 = \frac{1}{\sqrt{N}} \sum_{i=0}^{2^n} \ket{i}$: $U_s = \mathbf{I} - 2\dyad{s}{s} = \mathbf{I} - \frac{2}{N} \mathbf{1}$
@@ -44,7 +40,7 @@ $U_s = \mathbf{I} - 2 A \dyad{0} A^H = A \mathbf{I} A^H - 2 A \dyad{0} A^H = (A)
 
 So we can mirror about $\ket{s}$ by a isometric transform, mirror about $\ket{0}$, and then transform back!
 
-# Iterative search for a single element
+## Iterative search for a single element
 
 Consider the two cases: $k \in S, k \not \in S$:
 
@@ -54,7 +50,24 @@ In the second case, our Grover iteration will be an identity operation, so in th
 
 So we can say $k \in S \Leftrightarrow \ket{x} \text{ measured as } k$.
 
-# Iterative search for the minimum
+
+
+# Minimum Search in Database 
+
+
+
+
+## Our $U_\omega: \ket{x} \ket{y} \to \ket{x} \ket{y \oplus f(x)}$
+
+### For minimum search: $f(x) := x < k$
+
+This is already implemented in Qiskit aqua with `qiskit.aqua.circuits.FixedValueComparator`
+
+
+
+
+
+## Iterative search for the minimum
 
 - $work \gets \infty$
 - repeat $K$ times:
