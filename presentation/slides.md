@@ -52,7 +52,7 @@ So we can say $k \in S \Leftrightarrow \ket{x} \text{ measured as } k$.
 
 
 
-# Minimum Search in Database 
+# Minimum Search in Database
 
 
 
