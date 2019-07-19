@@ -38,17 +38,21 @@ We can use the distributive property:
 
 $U_s = \mathbf{I} - 2 A \dyad{0} A^H = A \mathbf{I} A^H - 2 A \dyad{0} A^H = (A) (\mathbf{I}-2\dyad{0}) (A^H)$
 
-So we can mirror about $\ket{s}$ by a isometric transform, mirror about $\ket{0}$, and then transform back!
+So we can implement mirroring about $\ket{s}$ by first doing a isometric
+transform $A^H = A^{-1}$, then mirroring about $\ket{0}$ (which we already
+implemented with our $U_\omega$), and then transforming back with $A$!
 
 ## Iterative search for a single element
 
 Consider the two cases: $k \in S, k \not \in S$:
 
-In the first case, this will be a standard Grover search for one of $N$ elements. Then we will get $k$ as a measurement of $\ket{x}$.
+In the first case, this will be a standard Grover search for one of $N$
+elements. Then we will extremely likely get $k$ as a measurement of $\ket{x}$
+(we can just measure multiple times to further increase the probability).
 
 In the second case, our Grover iteration will be an identity operation, so in the end we will get a random element from $S$ (which obviously won't be $k$).
 
-So we can say $k \in S \Leftrightarrow \ket{x} \text{ measured as } k$.
+So we can say $k \in S \Leftrightarrow \ket{x} \text{ measured as $k$ at least once}$.
 
 
 # Minimum Search in Database
@@ -71,16 +75,16 @@ The rest of the algorithm for maximum search will be analogous to the minimum ve
 
 ## Iterative search for the minimum
 
-- $work \gets \infty$
+- $m \gets \infty$
 - repeat $K$ times:
-  - Using Grover search, try to find $x \in S : x < work$
-  - $work \gets \min(work, x)$
+  - Using modified Grover search, boost the $x \in S : x < m$
+  - $m \gets \min(m, x)$
 
 Unlike the single-element Grover search, we don't know $\dim \ket{good}$ (the
 number of matching elements), so we don't know how many iterations to do.
 Instead, try different numbers of iterations, up until the number we would need
 for finding a single element: $1, 2, 4, \dots, \left[\frac{\pi}{4 \arcsin
-\frac{1}{\sqrt N}}-\frac{1}{2}\right]$. The total time taken will still be $\mathcal{O}(N)$.
+\frac{1}{\sqrt N}}-\frac{1}{2}\right]$. The total time will still be $\mathcal{O}(\sqrt{N})$.
 
 It can be proven that at least one of these iteration counts will have a good
 boosting effect, so it is very likely that we will actually find a smaller
