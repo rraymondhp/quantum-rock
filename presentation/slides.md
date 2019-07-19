@@ -18,7 +18,7 @@ header-includes:
 ### For element search: $f(x) := x = k$
 
 Let $X_{\bar k} = \bigotimes_{i=1}^{n} \begin{cases}
-\mathbf{X} & \text{if $k$ has bit $i$ \emph{un}set}\\
+\mathbf{X} & \text{if the $i$-th bit of $k$ is 0}\\
 \mathbf{I} & \text{otherwise}
 \end{cases}: \ket{x} \to \ket{x \oplus \bar k}$,
 and $U_\wedge: \ket{x}\ket{y} \to \ket{x}\ket{y \oplus \bigwedge_{i=1}^n x_i}$
@@ -51,11 +51,7 @@ In the second case, our Grover iteration will be an identity operation, so in th
 So we can say $k \in S \Leftrightarrow \ket{x} \text{ measured as } k$.
 
 
-
 # Minimum Search in Database
-
-
-
 
 ## Our $U_\omega: \ket{x} \ket{y} \to \ket{x} \ket{y \oplus f(x)}$
 
@@ -63,8 +59,14 @@ So we can say $k \in S \Leftrightarrow \ket{x} \text{ measured as } k$.
 
 This is already implemented in Qiskit aqua with `qiskit.aqua.circuits.FixedValueComparator`
 
+### For maximum search: $f(x) := x > k$
 
+`FixedValueComparator` can also implement a $\geq$ comparison.
 
+We can turn this into $>$ by adding one to $k$, or we can use the fact that
+$\bar x = 2^n-1-x$, i.e. flipping all bits reverses the order. So we can flip all qubits of $x$, then compare with $\bar k$ and then flip back.
+
+The rest of the algorithm for maximum search will be analogous to the minimum version.
 
 
 ## Iterative search for the minimum
