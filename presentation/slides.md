@@ -88,3 +88,7 @@ element. Because all smaller elements have the same probability of being
 chosen, the expected number of remaining elements will be cut in half every
 iteration. As such, we only need $\mathcal{O}(\log N)$ iterations to find the
 correct minimum.
+
+## Results
+
+![](results.png)
